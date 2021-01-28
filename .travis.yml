@@ -1,9 +1,11 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
 before_install:
-  - docker build -t  kozmotr/docker-react -f Dockerfile.dev .
+  - docker build -t kozmotr/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run kozmotr/docker-react npm run test -- --coverage
+  - docker run -e CI=true kozmotr/docker-react npm run test
